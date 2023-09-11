@@ -2,7 +2,7 @@
 
 public class User : BaseEntity
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public List<Tasks> Tasks { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
+    public required List<Tasks> Tasks { get; set; }
 }
