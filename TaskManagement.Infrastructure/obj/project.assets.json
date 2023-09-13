@@ -1,0 +1,133 @@
+{
+  "version": 3,
+  "targets": {
+    "net7.0": {
+      "TaskManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Application.dll": {}
+        }
+      },
+      "TaskManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TaskManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Common.dll": {}
+        }
+      },
+      "TaskManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Domain.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaskManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Application/TaskManagement.Application.csproj",
+      "msbuildProject": "../TaskManagement.Application/TaskManagement.Application.csproj"
+    },
+    "TaskManagement.Common/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Common/TaskManagement.Common.csproj",
+      "msbuildProject": "../TaskManagement.Common/TaskManagement.Common.csproj"
+    },
+    "TaskManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Domain/TaskManagement.Domain.csproj",
+      "msbuildProject": "../TaskManagement.Domain/TaskManagement.Domain.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net7.0": [
+      "TaskManagement.Application >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\DELL\\.nuget\\packages\\": {},
+    "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj",
+      "projectName": "TaskManagement.Infrastructure",
+      "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\DevExpress 22.2\\Components\\Offline Packages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 22.2.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net7.0"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\DevExpress 22.2\\Components\\System\\Components\\Packages": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "projectReferences": {
+            "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Application\\TaskManagement.Application.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Application\\TaskManagement.Application.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net7.0": {
+        "targetAlias": "net7.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
