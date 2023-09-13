@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v7.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v7.0": {
+      "TaskManagement.Domain/1.0.0": {
+        "dependencies": {
+          "TaskManagement.Common": "1.0.0"
+        },
+        "runtime": {
+          "TaskManagement.Domain.dll": {}
+        }
+      },
+      "TaskManagement.Common/1.0.0": {
+        "runtime": {
+          "TaskManagement.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TaskManagement.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "TaskManagement.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
