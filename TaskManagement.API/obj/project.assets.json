@@ -719,6 +719,68 @@
         "build": {
           "buildTransitive/net6.0/System.Text.Json.targets": {}
         }
+      },
+      "TaskManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Application.dll": {}
+        }
+      },
+      "TaskManagement.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "compile": {
+          "bin/placeholder/TaskManagement.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Common.dll": {}
+        }
+      },
+      "TaskManagement.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Common": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Domain.dll": {}
+        }
+      },
+      "TaskManagement.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Infrastructure.dll": {}
+        }
+      },
+      "TaskManagement.Persistence/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v7.0",
+        "dependencies": {
+          "TaskManagement.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/TaskManagement.Persistence.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/TaskManagement.Persistence.dll": {}
+        }
       }
     }
   },
@@ -1896,6 +1958,31 @@
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "TaskManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Application/TaskManagement.Application.csproj",
+      "msbuildProject": "../TaskManagement.Application/TaskManagement.Application.csproj"
+    },
+    "TaskManagement.Common/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Common/TaskManagement.Common.csproj",
+      "msbuildProject": "../TaskManagement.Common/TaskManagement.Common.csproj"
+    },
+    "TaskManagement.Domain/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Domain/TaskManagement.Domain.csproj",
+      "msbuildProject": "../TaskManagement.Domain/TaskManagement.Domain.csproj"
+    },
+    "TaskManagement.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Infrastructure/TaskManagement.Infrastructure.csproj",
+      "msbuildProject": "../TaskManagement.Infrastructure/TaskManagement.Infrastructure.csproj"
+    },
+    "TaskManagement.Persistence/1.0.0": {
+      "type": "project",
+      "path": "../TaskManagement.Persistence/TaskManagement.Persistence.csproj",
+      "msbuildProject": "../TaskManagement.Persistence/TaskManagement.Persistence.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -1904,7 +1991,10 @@
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.10",
       "Microsoft.AspNetCore.OpenApi >= 7.0.9",
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.10",
-      "Swashbuckle.AspNetCore >= 6.5.0"
+      "Swashbuckle.AspNetCore >= 6.5.0",
+      "TaskManagement.Application >= 1.0.0",
+      "TaskManagement.Infrastructure >= 1.0.0",
+      "TaskManagement.Persistence >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -1940,7 +2030,17 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Application\\TaskManagement.Application.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Application\\TaskManagement.Application.csproj"
+            },
+            "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj"
+            },
+            "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Persistence\\TaskManagement.Persistence.csproj": {
+              "projectPath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Persistence\\TaskManagement.Persistence.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
