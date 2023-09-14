@@ -34,23 +34,20 @@ public class ApplicationDbContext : IdentityDbContext<IdentityUser, IdentityRole
         builder.Entity<User>()
            .HasMany(user => user.Tasks)
            .WithOne(task => task.User)
-           .HasForeignKey(task => task.UserId)
-           .OnDelete(DeleteBehavior.Cascade); // Optional: Define the delete behavior\
+           .HasForeignKey(task => task.UserId); // Optional: Define the delete behavior\
 
 
         builder.Entity<Project>()
             .HasMany(project => project.Tasks)
             .WithOne(task => task.Project)
-            .HasForeignKey(task => task.ProjectId)
-            .OnDelete(DeleteBehavior.Cascade); // Optional: Define the delete behavior
+            .HasForeignKey(task => task.ProjectId); // Optional: Define the delete behavior
 
 
 
         builder.Entity<User>()
             .HasMany(user => user.Notifications)
             .WithOne(notification => notification.User)
-            .HasForeignKey(notification => notification.UserId)
-            .OnDelete(DeleteBehavior.Cascade); // Optional: Define the delete behavior
+            .HasForeignKey(notification => notification.UserId); // Optional: Define the delete behavior
 
 
            base.OnModelCreating(builder);
