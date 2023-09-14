@@ -6,6 +6,6 @@ public class User : BaseEntity
     public string Email { get; set; }
 
 
-    public virtual ICollection<Domain.Entities.Task> Tasks { get; set; } = new HashSet<Domain.Entities.Task>();
-    public virtual ICollection<Notification> Notifications { get; set; } = new HashSet<Notification>();
+    public virtual ICollection<Domain.Entities.Task>? Tasks { get; set; } = new HashSet<Domain.Entities.Task>(); //i made them nullable
+    public virtual ICollection<Notification>? Notifications { get; set; } = new HashSet<Notification>(); //i made them nullable
 }

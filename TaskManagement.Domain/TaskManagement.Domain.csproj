@@ -10,4 +10,8 @@
     <ProjectReference Include="..\TaskManagement.Common\TaskManagement.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Interface\Infrastructure\" />
+  </ItemGroup>
+
 </Project>

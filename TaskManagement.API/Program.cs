@@ -1,8 +1,16 @@
+using System.Net;
+using TaskManagement.Application;
+using TaskManagement.Domain.Entities;
+using TaskManagement.Domain.Interface.Persistence;
 using TaskManagement.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+DIConfiguration.RegisterServices(builder.Services);
+builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
+
+
 
 builder.Services.AddDbContext<ApplicationDbContext>();
 
