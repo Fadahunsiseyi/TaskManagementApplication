@@ -24,6 +24,12 @@ namespace TaskManagement.Persistence
         {
             return await DbSet.ToListAsync();
         }
+        public async Task<T?> GetByIdAsync(Guid id)
+        {
+            IQueryable<T> query = DbSet;
+            query = query.Where(x => x.Id == id);
+            return await query.FirstOrDefaultAsync();
+        }
 
         public async System.Threading.Tasks.Task SaveChangesAsync()
         {
