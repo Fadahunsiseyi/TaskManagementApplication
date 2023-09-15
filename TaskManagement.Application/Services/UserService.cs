@@ -31,5 +31,10 @@ namespace TaskManagement.Application.Services
             var entity = await UserRepository.GetAllAsync(null,null);
             return Mapper.Map<IEnumerable<UserGet>>(entity);
         }
+        public async Task<UserGet> GetUserAsync(Guid id)
+        {
+            var entity = await UserRepository.GetByIdAsync(id);
+            return Mapper.Map<UserGet>(entity);
+        }
     }
 }
