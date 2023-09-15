@@ -46,4 +46,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         ApplicationDbContext.Entry(entity).State = EntityState.Modified;
     }
 
+    public void Delete(T entity)
+    {
+        if (ApplicationDbContext.Entry(entity).State == EntityState.Detached)
+            DbSet.Attach(entity);
+        DbSet.Remove(entity);
+    }
+
 }
