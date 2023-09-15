@@ -40,7 +40,6 @@ namespace TaskManagement.Application.Services
         {
             var existingEntity = await UserRepository.GetByIdAsync(id);
             if (existingEntity is null) throw new Exception("User not found");
-            //var entity = Mapper.Map<User>(userUpdate);
             var entity = Mapper.Map(userUpdate, existingEntity);
             UserRepository.Update(entity);
             await UserRepository.SaveChangesAsync();
