@@ -20,6 +20,11 @@ namespace TaskManagement.Persistence
             return entity.Id;
         }
 
+        public async Task<IEnumerable<T>> GetAllAsync(int? skip, int? take)
+        {
+            return await DbSet.ToListAsync();
+        }
+
         public async System.Threading.Tasks.Task SaveChangesAsync()
         {
             await ApplicationDbContext.SaveChangesAsync();
