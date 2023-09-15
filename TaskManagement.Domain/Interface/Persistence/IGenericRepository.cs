@@ -9,5 +9,6 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<IEnumerable<T>> GetAllAsync(int? skip, int? take);
     Task<T?> GetByIdAsync(Guid id);
     void Update(T entity);
+    void Delete(T entity);
     System.Threading.Tasks.Task SaveChangesAsync();
 }
