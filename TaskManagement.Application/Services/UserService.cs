@@ -26,5 +26,10 @@ namespace TaskManagement.Application.Services
             await UserRepository.SaveChangesAsync();
             return entity.Id;
         }
+        public async Task<IEnumerable<UserGet>> GetUsersAsync()
+        {
+            var entity = await UserRepository.GetAllAsync(null,null);
+            return Mapper.Map<IEnumerable<UserGet>>(entity);
+        }
     }
 }
