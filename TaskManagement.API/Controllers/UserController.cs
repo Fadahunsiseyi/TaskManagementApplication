@@ -40,6 +40,14 @@ public class UserController : ControllerBase
         var user = await UserService.GetUserAsync(id);
         return Ok(user);
     }
+
+    [HttpPut]
+    [Route("Update/{id}")]
+    public async Task<IActionResult> UpdateUser([FromRoute]Guid id, UserUpdate userUpdate)
+    {
+        await UserService.UpdateUserAsync(id, userUpdate);
+        return Ok();
+    }
     
 
 }
