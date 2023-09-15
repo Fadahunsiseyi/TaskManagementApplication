@@ -36,5 +36,14 @@ namespace TaskManagement.Application.Services
             var entity = await UserRepository.GetByIdAsync(id);
             return Mapper.Map<UserGet>(entity);
         }
+        public async System.Threading.Tasks.Task UpdateUserAsync(Guid id, UserUpdate userUpdate)
+        {
+            var existingEntity = await UserRepository.GetByIdAsync(id);
+            if (existingEntity is null) throw new Exception("User not found");
+            //var entity = Mapper.Map<User>(userUpdate);
+            var entity = Mapper.Map(userUpdate, existingEntity);
+            UserRepository.Update(entity);
+            await UserRepository.SaveChangesAsync();
+        }
     }
 }
