@@ -19,10 +19,18 @@ public class UserController : ControllerBase
     [HttpPost]
     [Route("Create")]
 
-    public async Task<IActionResult> Create(UserCreate userCreate)
+    public async Task<IActionResult> CreateUser(UserCreate userCreate)
     {
         var id = await UserService.CreateUserAsync(userCreate);
         return Ok(id);
+    }
+
+    [HttpGet]
+    [Route("Get")]
+    public async Task<IActionResult> GetUsers()
+    {
+        var users = await UserService.GetUsersAsync();
+        return Ok(users);
     }
     
 
