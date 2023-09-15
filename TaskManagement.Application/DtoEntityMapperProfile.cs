@@ -10,6 +10,7 @@ public class DtoEntityMapperProfile : Profile
     {
         CreateMap<UserCreate, User>()
        .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<UserUpdate, User>();
         CreateMap<User, UserGet>();
     }
 }
