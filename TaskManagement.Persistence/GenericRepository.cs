@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TaskManagement.Domain.Interface.Persistence;
 using TaskManagement.Domain.Entities;
+using System.Linq.Expressions;
 
 namespace TaskManagement.Persistence;
 
@@ -24,12 +25,16 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     {
         return await DbSet.ToListAsync();
     }
-    public async Task<T?> GetByIdAsync(Guid id)
+    public async Task<T?> GetByIdAsync(Guid id, params Expression<Func<T, object>>[] includes)
     {
         IQueryable<T> query = DbSet;
         query = query.Where(x => x.Id == id);
-        var result = await query.FirstOrDefaultAsync();
-        return result;
+        foreach (var include in includes) query = query.Include(include);
+
+        return await query.SingleOrDefaultAsync();
+
+        //var result = await query.FirstOrDefaultAsync();
+        //return result;
         //return await query.FirstOrDefaultAsync();
     }
 
