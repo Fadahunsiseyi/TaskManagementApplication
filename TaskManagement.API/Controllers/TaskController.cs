@@ -22,4 +22,12 @@ public class TaskController : ControllerBase
         var id = await TaskService.CreateTaskAsync(taskCreate);
         return Ok(id);
     }
+
+    [HttpGet]
+    [Route("Get/{id}")]
+    public async Task<IActionResult> GetTask(Guid id)
+    {
+        var task = await TaskService.GetTaskDetailsAsync(id);
+        return Ok(task);
+    }
 }
