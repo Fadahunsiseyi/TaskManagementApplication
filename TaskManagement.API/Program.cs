@@ -1,4 +1,5 @@
 using System.Net;
+using TaskManagement.API;
 using TaskManagement.Application;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Persistence;
@@ -37,6 +38,7 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.EnsureCreated();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
