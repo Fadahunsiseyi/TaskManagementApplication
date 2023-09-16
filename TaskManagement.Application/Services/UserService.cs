@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using TaskManagement.Application.Validation;
 using TaskManagement.Domain.Dtos.User;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Persistence;
@@ -10,17 +12,23 @@ public class UserService : IUserService
 {
     private IMapper Mapper { get; }
     private IGenericRepository<User> UserRepository { get; }
+    private UserCreateValidator UserCreateValidator { get; }
+    private UserUpdateValidator UserUpdateValidator { get; }
 
-    public UserService(IMapper mapper, IGenericRepository<User> userRepository)
+    public UserService(IMapper mapper, IGenericRepository<User> userRepository, UserCreateValidator userCreateValidator, UserUpdateValidator userUpdateValidator)
     {
         Mapper = mapper;
         UserRepository = userRepository;
+        UserCreateValidator = userCreateValidator;
+        UserUpdateValidator = userUpdateValidator;
     }
 
 
 
     public async Task<Guid> CreateUserAsync(UserCreate addressCreate)
     {
+        await UserCreateValidator.ValidateAndThrowAsync(addressCreate);
+
         var entity = Mapper.Map<User>(addressCreate);
         await UserRepository.InsertAsync(entity);
         await UserRepository.SaveChangesAsync();
@@ -38,6 +46,8 @@ public class UserService : IUserService
     }
     public async System.Threading.Tasks.Task UpdateUserAsync(Guid id, UserUpdate userUpdate)
     {
+        await UserUpdateValidator.ValidateAndThrowAsync(userUpdate);
+
         var existingEntity = await UserRepository.GetByIdAsync(id);
         if (existingEntity is null) throw new Exception("User not found");
         var entity = Mapper.Map(userUpdate, existingEntity);
