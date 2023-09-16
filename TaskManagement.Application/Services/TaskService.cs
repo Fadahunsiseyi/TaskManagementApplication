@@ -56,10 +56,10 @@ public class TaskService : ITaskService
             case "low":
                 taskPriority = "Low";
                 break;
-            case "inprogress":
+            case "medium":
                 taskPriority = "Medium";
                 break;
-            case "completed":
+            case "high":
                 taskPriority = "High";
                 break;
             default:
@@ -71,7 +71,7 @@ public class TaskService : ITaskService
         entity.Project = project;
         entity.Status = taskStatus;
         entity.Priority = taskPriority;
-        entity.Created = DateTime.Now.AddDays(7);
+        entity.DueDate = DateTime.UtcNow.AddDays(7);
         await TaskRepository.InsertAsync(entity);
         await TaskRepository.SaveChangesAsync();
         return entity.Id;
