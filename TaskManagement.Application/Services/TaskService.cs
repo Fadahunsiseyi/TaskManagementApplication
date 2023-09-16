@@ -87,4 +87,19 @@ public class TaskService : ITaskService
         var entity = await TaskRepository.GetAllAsync(null,null);
         return Mapper.Map<IEnumerable<TaskList>>(entity);
     }
+    public async System.Threading.Tasks.Task UpdateTaskAsync(Guid id, TaskUpdate taskUpdate)
+    {
+        var existingEntity = await TaskRepository.GetByIdAsync(id);
+        if (existingEntity is null) throw new Exception("Task not found");
+        var entity = Mapper.Map(taskUpdate, existingEntity);
+        TaskRepository.Update(entity);
+        await TaskRepository.SaveChangesAsync();
+    }
+    public async System.Threading.Tasks.Task DeleteTaskAsync(Guid id)
+    {
+        var entity = await TaskRepository.GetByIdAsync(id);
+        if (entity is null) throw new Exception("Task not found");
+        TaskRepository.Delete(entity);
+        await TaskRepository.SaveChangesAsync();
+    }
 }
