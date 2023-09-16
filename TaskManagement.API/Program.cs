@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 DIConfiguration.RegisterServices(builder.Services);
 builder.Services.AddScoped<IGenericRepository<User>, GenericRepository<User>>();
 builder.Services.AddScoped<IGenericRepository<Project>, GenericRepository<Project>>();
+builder.Services.AddScoped<IGenericRepository<TaskManagement.Domain.Entities.Task>, GenericRepository<TaskManagement.Domain.Entities.Task>>();
 
 
 

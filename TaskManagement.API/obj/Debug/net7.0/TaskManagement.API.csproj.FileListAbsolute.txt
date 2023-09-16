@@ -1,3 +1,9 @@
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.AssemblyInfo.cs
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.csproj.CoreCompileInputs.cache
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\appsettings.json
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\TaskManagement.API.exe
@@ -60,13 +66,6 @@ C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\Ta
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\TaskManagement.Persistence.pdb
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\TaskManagement.Common.pdb
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\bin\Debug\net7.0\TaskManagement.Domain.pdb
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.csproj.AssemblyReference.cache
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.AssemblyInfoInputs.cache
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.AssemblyInfo.cs
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.csproj.CoreCompileInputs.cache
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\staticwebassets\msbuild.TaskManagement.API.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\staticwebassets\msbuild.build.TaskManagement.API.props
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\staticwebassets\msbuild.buildMultiTargeting.TaskManagement.API.props
@@ -81,3 +80,4 @@ C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\re
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.pdb
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.genruntimeconfig.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\ref\TaskManagement.API.dll
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cs

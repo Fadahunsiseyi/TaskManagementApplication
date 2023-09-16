@@ -1,25 +1,24 @@
-﻿namespace TaskManagement.Common.Enums
+﻿namespace TaskManagement.Common.Enums;
+
+
+public enum TasksPriority
 {
-    // Enum 1
-    public enum TasksPriority
-    {
-        Low,
-        Medium,
-        High
-    }
+    Low,
+    Medium,
+    High
+}
 
-    // Enum 2
-    public enum TasksStatus
-    {
-        Pending,
-        InProgress,
-        Completed
-    }
 
-    // Enum 3
-    public enum NotificationsType
-    {
-        DueDateReminder,
-        StatusUpdate
-    }
+public enum TasksStatus
+{
+    Pending,
+    InProgress,
+    Completed
+}
+
+
+public enum NotificationsType
+{
+    DueDateReminder,
+    StatusUpdate
 }

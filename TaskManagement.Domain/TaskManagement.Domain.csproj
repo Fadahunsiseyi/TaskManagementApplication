@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TaskManagement.Common\TaskManagement.Common.csproj" />
+    <Compile Remove="Interface\Infrastructure\**" />
+    <EmbeddedResource Remove="Interface\Infrastructure\**" />
+    <None Remove="Interface\Infrastructure\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interface\Infrastructure\" />
+    <ProjectReference Include="..\TaskManagement.Common\TaskManagement.Common.csproj" />
   </ItemGroup>
 
 </Project>
