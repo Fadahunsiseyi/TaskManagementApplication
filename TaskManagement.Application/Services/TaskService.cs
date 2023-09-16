@@ -76,4 +76,10 @@ public class TaskService : ITaskService
         await TaskRepository.SaveChangesAsync();
         return entity.Id;
     }
+
+    public async Task<TaskDetails> GetTaskDetailsAsync(Guid id)
+    {
+        var entity = await TaskRepository.GetByIdAsync(id, (task) => task.User, (task) => task.Project  );
+        return Mapper.Map<TaskDetails>(entity);
+    }
 }
