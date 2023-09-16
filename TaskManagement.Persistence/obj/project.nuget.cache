@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "81+AZMduNoihPQ6JPKyq5jfLNTLc+8oKeY9A1DlyxolNZaIZ3a8aLbOxPlKeHVlSgFyr03xJRetfKZ7f77TXcA==",
+  "dgSpecHash": "oiH//eWxkwtTHoh5MMmo3Ze5MsllPQPuVALhkd+9VGR//s24ToX26KhiMbH0po1y/280Nd5HmfnnJPH8XPMQHA==",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Persistence\\TaskManagement.Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.11\\microsoft.aspnetcore.cryptography.internal.7.0.11.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\7.0.11\\microsoft.aspnetcore.cryptography.keyderivation.7.0.11.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\7.0.11\\microsoft.aspnetcore.identity.entityframeworkcore.7.0.11.nupkg.sha512",

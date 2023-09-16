@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "Q4ErF0Czv0mKnW0tWI+J5Oyx4IfdFWKBobmwuOcPDO4yvBrKAaYle09U2N9k6/ArgIsGxLSM9zU4yaLI6aSXGQ==",
+  "dgSpecHash": "toKW5IpLFby/IpOC+FgDlzaxBgsTG5CJIJNmguqgRqNU81gtjCRTUKDh3L+cI3W4kXz3VOMYgdFYDZ0oUz3zjQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\DELL\\source\\repos\\TaskManagement\\TaskManagement.Infrastructure\\TaskManagement.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\fluentvalidation\\11.7.1\\fluentvalidation.11.7.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\6.0.0\\microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options\\6.0.0\\microsoft.extensions.options.6.0.0.nupkg.sha512",
