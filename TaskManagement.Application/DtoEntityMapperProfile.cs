@@ -17,5 +17,8 @@ public class DtoEntityMapperProfile : Profile
 
         CreateMap<ProjectCreate, Project>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<ProjectUpdate, Project>();
+        CreateMap<ProjectDelete, Project>();
+        CreateMap<Project, ProjectGet>();
     }
 }
