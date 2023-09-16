@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using FluentValidation;
+using TaskManagement.Application.Validation;
 using TaskManagement.Domain.Dtos.Project;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Persistence;
@@ -10,15 +12,21 @@ public class ProjectService : IProjectService
 {
     private IMapper Mapper { get; }
     private IGenericRepository<Project> ProjectRepository { get; }
+    private ProjectCreateValidator ProjectCreateValidator { get; }
+    private ProjectUpdateValidator ProjectUpdateValidator { get; }
 
-    public ProjectService(IMapper mapper, IGenericRepository<Project> projectRepository)
+    public ProjectService(IMapper mapper, IGenericRepository<Project> projectRepository, ProjectCreateValidator projectCreateValidator, ProjectUpdateValidator projectUpdateValidator)
     {
         Mapper = mapper;
         ProjectRepository = projectRepository;
+        ProjectCreateValidator = projectCreateValidator;
+        ProjectUpdateValidator = projectUpdateValidator;
     }
 
     public async Task<Guid> CreateProjectAsync(ProjectCreate projectCreate)
     {
+        await ProjectCreateValidator.ValidateAndThrowAsync(projectCreate);
+
         var entity = Mapper.Map<Project>(projectCreate);
         await ProjectRepository.InsertAsync(entity);
         await ProjectRepository.SaveChangesAsync();
@@ -36,6 +44,8 @@ public class ProjectService : IProjectService
     }
     public async System.Threading.Tasks.Task UpdateProjectAsync(Guid id, ProjectUpdate projectUpdate)
     {
+        await ProjectUpdateValidator.ValidateAndThrowAsync(projectUpdate);
+
         var existingEntity = await ProjectRepository.GetByIdAsync(id);
         if (existingEntity is null) throw new Exception("Project not found");
         var entity = Mapper.Map(projectUpdate, existingEntity);
