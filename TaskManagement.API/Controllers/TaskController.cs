@@ -30,4 +30,11 @@ public class TaskController : ControllerBase
         var task = await TaskService.GetTaskDetailsAsync(id);
         return Ok(task);
     }
+    [HttpGet]
+    [Route("Get")]
+    public async Task<IActionResult> GetTasks()
+    {
+        var tasks = await TaskService.GetTasksAsync();
+        return Ok(tasks);
+    }
 }
