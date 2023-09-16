@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TaskManagement.Domain.Dtos.Project;
+using TaskManagement.Domain.Dtos.Task;
 using TaskManagement.Domain.Dtos.User;
 using TaskManagement.Domain.Entities;
 
@@ -20,5 +21,8 @@ public class DtoEntityMapperProfile : Profile
         CreateMap<ProjectUpdate, Project>();
         CreateMap<ProjectDelete, Project>();
         CreateMap<Project, ProjectGet>();
+
+        CreateMap<TaskCreate, Domain.Entities.Task>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
     }
 }
