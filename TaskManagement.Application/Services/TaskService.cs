@@ -82,4 +82,9 @@ public class TaskService : ITaskService
         var entity = await TaskRepository.GetByIdAsync(id, (task) => task.User, (task) => task.Project  );
         return Mapper.Map<TaskDetails>(entity);
     }
+    public async Task<IEnumerable<TaskList>> GetTasksAsync()
+    {
+        var entity = await TaskRepository.GetAllAsync(null,null);
+        return Mapper.Map<IEnumerable<TaskList>>(entity);
+    }
 }
