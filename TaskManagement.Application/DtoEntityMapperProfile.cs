@@ -24,6 +24,8 @@ public class DtoEntityMapperProfile : Profile
 
         CreateMap<TaskCreate, Domain.Entities.Task>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<TaskUpdate, Domain.Entities.Task>();
+        CreateMap<TaskDelete, Domain.Entities.Task>();
         CreateMap<Domain.Entities.Task, TaskList>();
         //.ForMember(dest => dest.User, opt => opt.Ignore())
         //.ForMember(dest => dest.Project, opt => opt.Ignore());
