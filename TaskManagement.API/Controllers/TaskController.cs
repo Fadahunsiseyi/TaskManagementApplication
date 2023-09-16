@@ -37,4 +37,18 @@ public class TaskController : ControllerBase
         var tasks = await TaskService.GetTasksAsync();
         return Ok(tasks);
     }
+    [HttpPut]
+    [Route("Update/{id}")]
+    public async Task<IActionResult> UpdateTask([FromRoute]Guid id, TaskUpdate taskUpdate)
+    {
+        await TaskService.UpdateTaskAsync(id, taskUpdate);
+        return Ok();
+    }
+    [HttpDelete]
+    [Route("Delete/{id}")]
+    public async Task<IActionResult> DeleteTask([FromRoute]Guid id)
+    {
+        await TaskService.DeleteTaskAsync(id);
+        return Ok();
+    }
 }
