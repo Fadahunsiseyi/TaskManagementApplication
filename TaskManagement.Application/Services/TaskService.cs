@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using FluentValidation;
 using System.Net;
+using TaskManagement.Application.Validation;
 using TaskManagement.Common.Enums;
 using TaskManagement.Domain.Dtos.Task;
+using TaskManagement.Domain.Dtos.User;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Persistence;
 using TaskManagement.Domain.Interface.Services;
@@ -14,17 +17,23 @@ public class TaskService : ITaskService
     private IGenericRepository<Domain.Entities.Task> TaskRepository { get; }
     private IGenericRepository<User> UserRepository { get; }
     private IGenericRepository<Project> ProjectRepository { get; }
+    private TaskCreateValidator TaskCreateValidator { get; }
+    private TaskUpdateValidator TaskUpdateValidator { get; }
 
     public TaskService(IMapper mapper, IGenericRepository<Domain.Entities.Task> taskRepository, IGenericRepository<User> userRepository,
-        IGenericRepository<Project> projectRepository)
+        IGenericRepository<Project> projectRepository, TaskCreateValidator taskCreateValidator, TaskUpdateValidator taskUpdateValidator )
     {
         Mapper = mapper;
         TaskRepository = taskRepository;
         UserRepository = userRepository;
         ProjectRepository = projectRepository;
+        TaskCreateValidator = taskCreateValidator;
+        TaskUpdateValidator = taskUpdateValidator;
     }
     public async Task<Guid> CreateTaskAsync(TaskCreate taskCreate)
     {
+        await TaskCreateValidator.ValidateAndThrowAsync(taskCreate);
+
         var user = await UserRepository.GetByIdAsync(taskCreate.UserId);
 
         if (user is null) throw new Exception("user not found");
@@ -36,7 +45,7 @@ public class TaskService : ITaskService
         var entity = Mapper.Map<Domain.Entities.Task>(taskCreate);
 
         string taskStatus;
-        switch (taskCreate.Status.ToLower()) // Use ToLower to handle case-insensitivity
+        switch (taskCreate.Status.ToLower().Replace(" ","")) // Use ToLower to handle case-insensitivity
         {
             case "pending":
                 taskStatus = "Pending...";
@@ -89,6 +98,8 @@ public class TaskService : ITaskService
     }
     public async System.Threading.Tasks.Task UpdateTaskAsync(Guid id, TaskUpdate taskUpdate)
     {
+        await TaskUpdateValidator.ValidateAndThrowAsync(taskUpdate);
+
         var existingEntity = await TaskRepository.GetByIdAsync(id);
         if (existingEntity is null) throw new Exception("Task not found");
         var entity = Mapper.Map(taskUpdate, existingEntity);
