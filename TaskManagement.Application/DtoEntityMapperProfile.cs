@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using TaskManagement.Domain.Dtos.Notification;
 using TaskManagement.Domain.Dtos.Project;
 using TaskManagement.Domain.Dtos.Task;
 using TaskManagement.Domain.Dtos.User;
@@ -32,6 +33,10 @@ public class DtoEntityMapperProfile : Profile
 
         CreateMap<Domain.Entities.Task, TaskDetails>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+
+        CreateMap<NotificationCreate, Notification>()
+            .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<Notification, NotificationGet>();
 
     }
 }
