@@ -3,7 +3,7 @@
 
 public enum TasksPriority
 {
-    Low,
+    Low=1,
     Medium,
     High
 }
@@ -11,7 +11,7 @@ public enum TasksPriority
 
 public enum TasksStatus
 {
-    Pending,
+    Pending=1,
     InProgress,
     Completed
 }
