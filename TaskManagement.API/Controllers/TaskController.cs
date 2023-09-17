@@ -32,9 +32,9 @@ public class TaskController : ControllerBase
     }
     [HttpGet]
     [Route("Get")]
-    public async Task<IActionResult> GetTasks()
+    public async Task<IActionResult> GetTasks([FromQuery]TaskFilter taskFilter)
     {
-        var tasks = await TaskService.GetTasksAsync();
+        var tasks = await TaskService.GetTasksAsync(taskFilter);
         return Ok(tasks);
     }
     [HttpPut]

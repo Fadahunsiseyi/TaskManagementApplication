@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using System.Linq.Expressions;
 using System.Net;
 using TaskManagement.Application.Validation;
 using TaskManagement.Common.Enums;
@@ -45,31 +46,31 @@ public class TaskService : ITaskService
         var entity = Mapper.Map<Domain.Entities.Task>(taskCreate);
 
         string taskStatus;
-        switch (taskCreate.Status.ToLower().Replace(" ","")) // Use ToLower to handle case-insensitivity
+        switch (taskCreate.Status.ToUpper().Replace(" ","")) // Use ToLower to handle case-insensitivity
         {
-            case "pending":
-                taskStatus = "Pending...";
+            case "PENDING":
+                taskStatus = "PENDING";
                 break;
-            case "inprogress":
-                taskStatus = "In-Progress...";
+            case "INPROGRESS":
+                taskStatus = "INPROGRESS";
                 break;
-            case "completed":
-                taskStatus = "Completed!";
+            case "COMPLETED":
+                taskStatus = "COMPLETED";
                 break;
             default:
                 throw new Exception("Invalid task status");
         }
         string taskPriority;
-        switch (taskCreate.Priority.ToLower()) // Use ToLower to handle case-insensitivity
+        switch (taskCreate.Priority.ToUpper().Replace(" ", "")) // Use ToLower to handle case-insensitivity
         {
-            case "low":
-                taskPriority = "Low";
+            case "LOW":
+                taskPriority = "LOW";
                 break;
-            case "medium":
-                taskPriority = "Medium";
+            case "MEDIUM":
+                taskPriority = "MEDIUM";
                 break;
-            case "high":
-                taskPriority = "High";
+            case "HIGH":
+                taskPriority = "HIGH";
                 break;
             default:
                 throw new Exception("Invalid task priority");
@@ -91,10 +92,20 @@ public class TaskService : ITaskService
         var entity = await TaskRepository.GetByIdAsync(id, (task) => task.User, (task) => task.Project  );
         return Mapper.Map<TaskDetails>(entity);
     }
-    public async Task<IEnumerable<TaskList>> GetTasksAsync()
+    public async Task<IEnumerable<TaskList>> GetTasksAsync(TaskFilter taskFilter)
     {
-        var entity = await TaskRepository.GetAllAsync(null,null);
-        return Mapper.Map<IEnumerable<TaskList>>(entity);
+        string? lowercasePriority = taskFilter.Priority?.ToUpper().Replace(" ", "");
+        string? lowercaseStatus = taskFilter.Status?.ToUpper().Replace(" ","");
+
+        Expression<Func<Domain.Entities.Task, bool>> statusFilter = (task) => lowercaseStatus == null ? true :
+task.Status.StartsWith(lowercaseStatus);
+        Expression<Func<Domain.Entities.Task, bool>> priorityFilter = (priority) => lowercasePriority == null ? true :
+priority.Priority.StartsWith(lowercasePriority);
+
+        var entities = await TaskRepository.GetFilteredAsync(new Expression<Func<Domain.Entities.Task, bool>>[] { statusFilter, priorityFilter }, (task) => task.User, (task) => task.Project);
+
+        //var entity = await TaskRepository.GetAllAsync(null,null);
+        return Mapper.Map<IEnumerable<TaskList>>(entities);
     }
     public async System.Threading.Tasks.Task UpdateTaskAsync(Guid id, TaskUpdate taskUpdate)
     {
