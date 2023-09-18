@@ -20,9 +20,9 @@ public class NotificationService : INotificationService
 
     public async Task<Guid> CreateNotificationAsync(NotificationCreate notificationCreate)
     {
-
         var entity = Mapper.Map<Notification>(notificationCreate);
-       await NotificationRepository.InsertAsync(entity);
+        entity.IsRead = false;
+        await NotificationRepository.InsertAsync(entity);
         await NotificationRepository.SaveChangesAsync();
         return entity.Id;
     }
@@ -36,8 +36,11 @@ public class NotificationService : INotificationService
         var entity = await NotificationRepository.GetByIdAsync(id);
         if (entity is null) throw new Exception("Notification not found");
 
+        bool handleReadValue = false;
+        if(!entity.IsRead) handleReadValue = true;
+
         var notificationType = entity.Type == NotificationsType.StatusUpdate ? "Status Update" : "DueDate Reminder";
-        var notificationGet = new NotificationGet(entity.Id, entity.Message, notificationType);
+        var notificationGet = new NotificationGet(entity.Id, entity.Message, notificationType, handleReadValue);
 
         return notificationGet;
     }
