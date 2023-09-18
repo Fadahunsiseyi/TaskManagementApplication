@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Services;
 using TaskManagement.Domain.Dtos.Project;
+using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Services;
 
 namespace TaskManagement.API.Controllers;
@@ -20,36 +21,79 @@ public class ProjectController : ControllerBase
     [Route("Create")]
     public async Task<IActionResult> CreateProject(ProjectCreate projectCreate)
     {
-        var id = await ProjectService.CreateProjectAsync(projectCreate);
-        return Ok(id);
+        try
+        {
+            var id = await ProjectService.CreateProjectAsync(projectCreate);
+            return Ok(new { Status = "Success", Message = "Project created successfully", Id = id });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { Status = "Error", Message = "Error creating notification: " + ex.Message });
+        }
     }
     [HttpGet]
     [Route("Get")]
-    public async Task<IActionResult> GetUsers()
+    public async Task<IActionResult> GetProjects()
     {
-        var users = await ProjectService.GetProjectsAsync();
-        return Ok(users);
+        try
+        {
+            var projects = await ProjectService.GetProjectsAsync();
+            if (projects.Any())
+                return Ok(new { Status = "Success", Message = "Projects retrieved successfully", Projects = projects });
+            else
+                return NotFound(new { Status = "Error", Message = "No projects found" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while retrieving projects: " + ex.Message });
+        }
     }
 
     [HttpGet]
     [Route("Get/{id}")]
-    public async Task<IActionResult> GetUser(Guid id)
+    public async Task<IActionResult> GetProject(Guid id)
     {
-        var user = await ProjectService.GetProjectAsync(id);
-        return Ok(user);
+        try
+        {
+            var project = await ProjectService.GetProjectAsync(id);
+            if (project != null)
+                return Ok(new { Status = "Success", Message = "Project retrieved successfully", Project = project });
+            else
+                return NotFound(new { Status = "Error", Message = "Project not found" });
+        }
+        catch (Exception ex)
+            {
+                return StatusCode(500, new { Status = "Error", Message = "An error occurred while retrieving the project: " + ex.Message });
+            }
     }
     [HttpPut]
     [Route("Update/{id}")]
-    public async Task<IActionResult> UpdateUser([FromRoute]Guid id, ProjectUpdate projectUpdate)
+    public async Task<IActionResult> UpdateProject([FromRoute]Guid id, ProjectUpdate projectUpdate)
     {
-        await ProjectService.UpdateProjectAsync(id, projectUpdate);
-        return Ok();
+        try
+        {
+            await ProjectService.UpdateProjectAsync(id, projectUpdate);
+            return Ok(new { Status = "Success", Message = "Project updated successfully" });
+        }
+        catch (Exception ex)
+        {
+
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while updating the project: " + ex.Message });
+        }
     }
     [HttpDelete]
     [Route("Delete/{id}")]
-    public async Task<IActionResult> DeleteUser([FromRoute]Guid id)
+    public async Task<IActionResult> DeleteProject([FromRoute]Guid id)
     {
-        await ProjectService.DeleteProjectAsync(id);
-        return Ok();
+        try
+        {
+            await ProjectService.DeleteProjectAsync(id);
+            return Ok(new { Status = "Success", Message = "Project deleted successfully" });
+        }
+        catch (Exception ex)
+        {
+
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while deleting the project: " + ex.Message });
+        }
     }
 }
