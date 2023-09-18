@@ -2,4 +2,4 @@
 
 namespace TaskManagement.Common.Dtos.Notification;
 
-public record NotificationGet(Guid Id, string Message, string Type);
+public record NotificationGet(Guid Id, string Message, string Type, bool IsRead);
