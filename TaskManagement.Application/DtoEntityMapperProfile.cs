@@ -36,6 +36,8 @@ public class DtoEntityMapperProfile : Profile
 
         CreateMap<NotificationCreate, Notification>()
             .ForMember(dest => dest.Id, opt => opt.Ignore());
+        CreateMap<NotificationUpdate, Notification>();
+        CreateMap<NotificationDelete, Notification>();
         CreateMap<Notification, NotificationGet>();
 
     }
