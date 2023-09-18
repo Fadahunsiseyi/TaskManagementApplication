@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using TaskManagement.Domain.Entities;
 
-namespace TaskManagement.Domain.Interface.Persistence;
+namespace TaskManagement.Application.Interface.Persistence;
 
 public interface IGenericRepository<T> where T : BaseEntity
 {

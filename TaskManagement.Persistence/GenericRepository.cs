@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TaskManagement.Domain.Interface.Persistence;
+using TaskManagement.Application.Interface.Persistence;
 using TaskManagement.Domain.Entities;
 using System.Linq.Expressions;
 

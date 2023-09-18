@@ -2,7 +2,7 @@
 using TaskManagement.Application.Services;
 using TaskManagement.Common.Dtos.Project;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.API.Controllers;
 

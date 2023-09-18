@@ -1,6 +1,6 @@
 ﻿using TaskManagement.Common.Dtos.User;
 
-namespace TaskManagement.Domain.Interface.Services;
+namespace TaskManagement.Application.Interface.Services;
 
 public interface IUserService
 {

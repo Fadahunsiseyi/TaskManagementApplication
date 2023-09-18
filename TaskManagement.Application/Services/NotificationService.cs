@@ -2,8 +2,8 @@
 using TaskManagement.Common.Enums;
 using TaskManagement.Common.Dtos.Notification;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Persistence;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Persistence;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.Application.Services;
 

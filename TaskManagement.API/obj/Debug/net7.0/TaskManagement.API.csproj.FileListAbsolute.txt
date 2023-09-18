@@ -81,3 +81,4 @@ C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\re
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.pdb
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.genruntimeconfig.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\ref\TaskManagement.API.dll
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.API\obj\Debug\net7.0\TaskManagement.API.MvcApplicationPartsAssemblyInfo.cs

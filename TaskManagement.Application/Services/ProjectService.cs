@@ -3,8 +3,8 @@ using FluentValidation;
 using TaskManagement.Application.Validation;
 using TaskManagement.Common.Dtos.Project;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Persistence;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Persistence;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.Application.Services;
 
