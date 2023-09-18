@@ -34,10 +34,28 @@ public class NotificationService : INotificationService
     public async Task<NotificationGet> GetNotificationAsync(Guid id)
     {
         var entity = await NotificationRepository.GetByIdAsync(id);
+        if (entity is null) throw new Exception("Notification not found");
 
         var notificationType = entity.Type == NotificationsType.StatusUpdate ? "Status Update" : "DueDate Reminder";
         var notificationGet = new NotificationGet(entity.Id, entity.Message, notificationType);
 
         return notificationGet;
+    }
+    public async System.Threading.Tasks.Task UpdateNotificationAsync(Guid id, NotificationUpdate notificationUpdate)
+    {
+        var existingEntity = await NotificationRepository.GetByIdAsync(id);
+        if (existingEntity is null) throw new Exception("Notification not found");
+        var entity = Mapper.Map(notificationUpdate, existingEntity);
+
+         NotificationRepository.Update(entity);
+        await NotificationRepository.SaveChangesAsync();
+    }
+    public async System.Threading.Tasks.Task DeleteNotificationAsync(Guid id)
+    {
+        var entity = await NotificationRepository.GetByIdAsync(id);
+        if (entity is null) throw new Exception("Notification not found");
+
+        NotificationRepository.Delete(entity);
+        await NotificationRepository.SaveChangesAsync();
     }
 }
