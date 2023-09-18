@@ -1,5 +1,5 @@
-﻿using TaskManagement.Common.Enums;
+﻿//using TaskManagement.Common.Enums;
 
-namespace TaskManagement.Domain.Dtos.Task;
+namespace TaskManagement.Common.Dtos.Task;
 
 public record TaskCreate(string Title, string Description, string Priority, string Status, Guid ProjectId, Guid UserId);

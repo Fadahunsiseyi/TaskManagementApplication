@@ -1,4 +1,4 @@
-﻿using TaskManagement.Domain.Dtos.User;
+﻿using TaskManagement.Common.Dtos.User;
 
 namespace TaskManagement.Domain.Interface.Services;
 

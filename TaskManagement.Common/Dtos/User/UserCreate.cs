@@ -1,3 +1,3 @@
-﻿namespace TaskManagement.Domain.Dtos.User;
+﻿namespace TaskManagement.Common.Dtos.User;
 
 public record UserCreate(string Name, string Email);

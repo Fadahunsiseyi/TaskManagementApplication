@@ -1,4 +1,4 @@
-﻿using TaskManagement.Domain.Dtos.Notification;
+﻿using TaskManagement.Common.Dtos.Notification;
 
 namespace TaskManagement.Domain.Interface.Services;
 

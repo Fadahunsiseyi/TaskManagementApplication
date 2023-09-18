@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Application.Services;
-using TaskManagement.Domain.Dtos.Project;
+using TaskManagement.Common.Dtos.Project;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Services;
 

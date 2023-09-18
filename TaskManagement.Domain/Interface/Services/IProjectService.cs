@@ -1,4 +1,4 @@
-﻿using TaskManagement.Domain.Dtos.Project;
+﻿using TaskManagement.Common.Dtos.Project;
 
 namespace TaskManagement.Domain.Interface.Services;
 

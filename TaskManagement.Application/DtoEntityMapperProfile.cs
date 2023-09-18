@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using TaskManagement.Domain.Dtos.Notification;
-using TaskManagement.Domain.Dtos.Project;
-using TaskManagement.Domain.Dtos.Task;
-using TaskManagement.Domain.Dtos.User;
+using TaskManagement.Common.Dtos.Notification;
+using TaskManagement.Common.Dtos.Project;
+using TaskManagement.Common.Dtos.Task;
+using TaskManagement.Common.Dtos.User;
 using TaskManagement.Domain.Entities;
 
 namespace TaskManagement.Application;

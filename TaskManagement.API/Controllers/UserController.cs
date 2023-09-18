@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManagement.Domain.Dtos.User;
+using TaskManagement.Common.Dtos.User;
 using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Services;
 

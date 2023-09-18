@@ -1,4 +1,4 @@
-﻿namespace TaskManagement.Domain.Dtos.User;
+﻿namespace TaskManagement.Common.Dtos.User;
 
 public record UserUpdate(string Name, string Email);
 
