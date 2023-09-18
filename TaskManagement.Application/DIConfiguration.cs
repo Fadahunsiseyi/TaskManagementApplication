@@ -13,6 +13,7 @@ public class DIConfiguration
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IProjectService, ProjectService>();
         services.AddScoped<ITaskService, TaskService>();
+        services.AddScoped<INotificationService, NotificationService>();
 
         services.AddScoped<UserCreateValidator>();
         services.AddScoped<UserUpdateValidator>();

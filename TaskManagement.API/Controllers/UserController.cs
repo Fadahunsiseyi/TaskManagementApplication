@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using TaskManagement.Domain.Dtos.User;
+using TaskManagement.Domain.Entities;
 using TaskManagement.Domain.Interface.Services;
 
 namespace TaskManagement.API.Controllers;
@@ -21,40 +22,84 @@ public class UserController : ControllerBase
 
     public async Task<IActionResult> CreateUser(UserCreate userCreate)
     {
-        var id = await UserService.CreateUserAsync(userCreate);
-        return Ok(id);
+        try
+        {
+            var id = await UserService.CreateUserAsync(userCreate);
+            return Ok(new { Status = "Success", Message = "User created successfully", Id = id });
+        }
+        catch (Exception ex)
+        {
+
+            return BadRequest(new { Status = "Error", Message = "Error creating user: " + ex.Message });
+        }
     }
 
     [HttpGet]
     [Route("Get")]
     public async Task<IActionResult> GetUsers()
     {
-        var users = await UserService.GetUsersAsync();
-        return Ok(users);
+        try
+        {
+            var users = await UserService.GetUsersAsync();
+            if (users.Any())
+                return Ok(new { Status = "Success", Message = "Users retrieved successfully", Users = users });
+            else
+                return NotFound(new { Status = "Error", Message = "No users found" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while retrieving users: " + ex.Message });
+        }
     }
 
     [HttpGet]
     [Route("Get/{id}")]
     public async Task<IActionResult> GetUser(Guid id)
     {
-        var user = await UserService.GetUserAsync(id);
-        return Ok(user);
+        try
+        {
+            var user = await UserService.GetUserAsync(id);
+            if (user != null)
+                return Ok(new { Status = "Success", Message = "User retrieved successfully", User = user });
+            else
+                return NotFound(new { Status = "Error", Message = "User not found" });
+        }
+        catch (Exception ex)
+        {
+
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while retrieving the user: " + ex.Message });
+        }
     }
 
     [HttpPut]
     [Route("Update/{id}")]
     public async Task<IActionResult> UpdateUser([FromRoute]Guid id, UserUpdate userUpdate)
     {
-        await UserService.UpdateUserAsync(id, userUpdate);
-        return Ok();
+        try
+        {
+            await UserService.UpdateUserAsync(id, userUpdate);
+            return Ok(new { Status = "Success", Message = "User updated successfully" });
+        }
+        catch (Exception ex)
+        {
+
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while updating the user: " + ex.Message });
+        }
     }
 
     [HttpDelete]
     [Route("Delete/{id}")]
     public async Task<IActionResult> DeleteUser([FromRoute]Guid id)
     {
-        await UserService.DeleteUserAsync(id);
-        return Ok();
+        try
+        {
+            await UserService.DeleteUserAsync(id);
+            return Ok(new { Status = "Success", Message = "User deleted successfully" });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while deleting the user: " + ex.Message });
+        }
     }
     
 

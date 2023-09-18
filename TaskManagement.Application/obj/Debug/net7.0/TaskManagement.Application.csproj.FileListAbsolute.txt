@@ -1,8 +1,3 @@
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.csproj.AssemblyReference.cache
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.AssemblyInfoInputs.cache
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.AssemblyInfo.cs
-C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.csproj.CoreCompileInputs.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Application.deps.json
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Application.dll
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Application.pdb
@@ -10,6 +5,11 @@ C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\n
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Domain.dll
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Domain.pdb
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\bin\Debug\net7.0\TaskManagement.Common.pdb
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.csproj.AssemblyReference.cache
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.AssemblyInfoInputs.cache
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.AssemblyInfo.cs
+C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.csproj.CoreCompileInputs.cache
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.csproj.CopyComplete
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\TaskManagement.Application.dll
 C:\Users\DELL\source\repos\TaskManagement\TaskManagement.Application\obj\Debug\net7.0\refint\TaskManagement.Application.dll

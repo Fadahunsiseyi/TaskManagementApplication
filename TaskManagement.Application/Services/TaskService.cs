@@ -79,8 +79,8 @@ public class TaskService : ITaskService
 
         entity.User = user;
         entity.Project = project;
-        entity.Status = taskStatus;
-        entity.Priority = taskPriority;
+        entity.Status = taskStatus;//to be deleted
+        entity.Priority = taskPriority;// to be deleted
         entity.DueDate = DateTime.UtcNow.AddDays(7);
         await TaskRepository.InsertAsync(entity);
         await TaskRepository.SaveChangesAsync();
