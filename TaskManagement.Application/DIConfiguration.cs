@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using TaskManagement.Application.Services;
 using TaskManagement.Application.Validation;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.Application;
 

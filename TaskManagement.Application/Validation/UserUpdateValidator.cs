@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using TaskManagement.Domain.Dtos.User;
+using TaskManagement.Common.Dtos.User;
 
 namespace TaskManagement.Application.Validation;
 

@@ -2,7 +2,7 @@ using System.Net;
 using TaskManagement.API;
 using TaskManagement.Application;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Persistence;
+using TaskManagement.Application.Interface.Persistence;
 using TaskManagement.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManagement.Domain.Dtos.Task;
+using TaskManagement.Common.Dtos.Task;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.API.Controllers;
 

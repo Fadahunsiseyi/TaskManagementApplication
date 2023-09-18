@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using TaskManagement.Application.Validation;
-using TaskManagement.Domain.Dtos.User;
+using TaskManagement.Common.Dtos.User;
 using TaskManagement.Domain.Entities;
-using TaskManagement.Domain.Interface.Persistence;
-using TaskManagement.Domain.Interface.Services;
+using TaskManagement.Application.Interface.Persistence;
+using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.Application.Services;
 
