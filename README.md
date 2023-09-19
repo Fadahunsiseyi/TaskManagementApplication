@@ -26,3 +26,36 @@ To set up and run the API on your local machine, follow these steps:
 5. Run the API project.
 
 ## API ENDPOINTS
+
+# Task Endpoints
+1. ```bash
+   POST /api/tasks: Create a new task.
+   GET /api/tasks: Retrieve a list of tasks.
+   GET /api/tasks/{id}: Retrieve a specific task by ID.
+   PUT /api/tasks/{id}: Update a task by ID.
+   DELETE /api/tasks/{id}: Delete a task by ID.
+
+# User Endpoints
+2. ```
+   POST /api/users: Create a new user.
+   GET /api/users: Retrieve a list of users.
+   GET /api/users/{id}: Retrieve a specific user by ID.
+   PUT /api/users/{id}: Update a user by ID.
+   DELETE /api/users/{id}: Delete a user by ID.
+   
+# Project Endpoints
+3. ```
+   POST /api/projects: Create a new project.
+   GET /api/projects: Retrieve a list of projects.
+   GET /api/projects/{id}: Retrieve a specific project by ID.
+   PUT /api/projects/{id}: Update a project by ID.
+   DELETE /api/projects/{id}: Delete a project by ID.
+
+# Notification Endpoints
+4. ```
+    GET /api/notifications: Retrieve a list of notifications.
+    GET /api/notifications/{id}: Retrieve a specific notification by ID.
+   DELETE /api/notifications/{id}: Delete a notification by ID.
+
+For additional endpoints and detailed API documentation, you can access the Swagger UI by visiting /swagger in your web browser after running the API.
+
