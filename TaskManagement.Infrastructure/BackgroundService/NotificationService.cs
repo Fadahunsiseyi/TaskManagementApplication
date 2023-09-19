@@ -54,8 +54,42 @@ public class NotificationService : IHostedService, IDisposable
             notifications.Add(new Notification {
                 UserId = task.UserId.Value,
                 Message = $"Task {task.Title} is due in 2 days",
-               Type =  NotificationsType.DueDateReminder});
+               Type =  NotificationsType.DueDateReminder,
+               IsRead = false
+            });
         };
+
+
+        var completedTasks = context.Tasks.Where(x => x.Status == "COMPLETED").ToList();
+        foreach (var task in completedTasks)
+        {
+            notifications.Add(new Notification
+            {
+                UserId = task.UserId.Value,
+                Message = $"Task {task.Title} has been marked as completed",
+                Type = NotificationsType.StatusUpdate,
+                IsRead = false
+            });
+        }
+
+
+        var yesterday = DateTime.Now.AddDays(-1);
+        var newlyAssignedTasks = context.Tasks
+            .Where(task => task.Created >= yesterday)
+            .ToList();
+
+        foreach (var task in newlyAssignedTasks)
+        {
+            notifications.Add(new Notification
+            {
+                UserId = task.UserId.Value,
+                Message = $"You have a new task assigned: {task.Title}",
+                Type = NotificationsType.StatusUpdate,
+                IsRead = false
+            });
+        }
+
+
         context.Notifications.AddRange(notifications);
         context.SaveChanges();
     }
