@@ -61,10 +61,10 @@ public class TaskController : ControllerBase
             else
                 return NotFound(new { Status = "Error", Message = "No tasks found" });
         }
-        catch (Exception)
+        catch (Exception ex)
         {
 
-            throw;
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while fetching tasks", Error = ex.Message });
         }
     }
     [HttpPut]
@@ -103,7 +103,7 @@ public class TaskController : ControllerBase
         try
         {
             await TaskService.TaskAssignmentAsync(taskAssignment);
-            return Ok();
+            return Ok(new { Status = "Success", Message = "Task Assignment successful" });
         }
         catch (Exception ex)
         {
@@ -117,11 +117,29 @@ public class TaskController : ControllerBase
         try
         {
             await TaskService.TaskUnAssignmentAsync(id);
-            return Ok();
+            return Ok(new { Status = "Success", Message = "Task UnAssignment successful" });
         }
         catch (Exception ex)
         {
             return StatusCode(500, new { Status = "Error", Message = "An error occurred while unassigning the task: " + ex.Message });
+        }
+    }
+    [HttpGet]
+    [Route("DueDate")]
+    public async Task<IActionResult> GetTaskDueDate()
+    {
+        try
+        {
+            var tasks = await TaskService.GetTaskDueDateAsync();
+            if (tasks.Any())
+                return Ok(new { Status = "Success", Message = "Tasks retrieved successfully", Tasks = tasks });
+            else
+                return NotFound(new { Status = "Error", Message = "No tasks found" });
+        }
+        catch (Exception ex)
+        {
+
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while fetching tasks due dates", Error = ex.Message });
         }
     }
 }
