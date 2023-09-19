@@ -9,8 +9,8 @@ public class Task : BaseEntity
     public  DateTime DueDate { get; set; }
     public string Priority { get; set; }
     public string Status { get; set; }
-    public Guid ProjectId { get; set; }
-    public Guid UserId { get; set; }
+    public Guid? ProjectId { get; set; }
+    public Guid? UserId { get; set; }
 
 
     public virtual Project Project { get; set; }
