@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TaskManagement.Common.Dtos.Notification;
 using TaskManagement.Application.Interface.Services;
 
 namespace TaskManagement.API.Controllers;
