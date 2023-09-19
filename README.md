@@ -11,6 +11,7 @@ The solution consists of the following projects:
 - **Common**: Contains DTOs (Notification DTO, Project DTO, Task DTO, and User DTO) and enums.
 - **Domain**: Contains domain entities, including Base Entity, Notification Entity, Project Entity, Task Entity, and User Entity.
 - **Persistence**: Houses the Application DbContext which utilizes Entity Framework Core and the Generic Repository.
+- **Infrastructy=ure**: Houses the logic for the background services.
 
 ## Getting Started
 
