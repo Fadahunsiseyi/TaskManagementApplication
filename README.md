@@ -1,6 +1,6 @@
 # Task Management API
 
-This is a Task Management API built using ASP.NET Core, designed to manage tasks, projects, users, and notifications. It follows SOLID principles and separates concerns effectively.
+This Task Management API was built using ASP.NET Core, designed to manage tasks, projects, users, and notifications. It follows SOLID principles and separates concerns effectively.
 
 ## Projects
 
@@ -29,33 +29,41 @@ To set up and run the API on your local machine, follow these steps:
 
 # Task Endpoints
 1. ```bash
-   POST /api/tasks: Create a new task.
-   GET /api/tasks: Retrieve a list of tasks.
-   GET /api/tasks/{id}: Retrieve a specific task by ID.
-   PUT /api/tasks/{id}: Update a task by ID.
-   DELETE /api/tasks/{id}: Delete a task by ID.
+   POST /Task/Create: Create a new task.
+   
+   GET /Task/Get: Retrieve a list of tasks.
+   GET /Task/Get/{id}: Retrieve a specific task by ID.
+   GET /Task/DueDate: Retrieve tasks due date.
+   
+   PUT /Task/Get/{id}: Update a task by ID.
+   PUT /Task/Assignment: Assign a task to a project.
+   PUT /Task/UnAssignment/{id}: UnAssign task to a project.
+   
+   DELETE /Task/Update/{id}: Delete a task by ID.
 
 # User Endpoints
 2. ```
-   POST /api/users: Create a new user.
-   GET /api/users: Retrieve a list of users.
-   GET /api/users/{id}: Retrieve a specific user by ID.
-   PUT /api/users/{id}: Update a user by ID.
-   DELETE /api/users/{id}: Delete a user by ID.
+   POST /User/Create: Create a new user.
+   GET /User/Get: Retrieve a list of users.
+   GET /User/Get/{id}: Retrieve a specific user by ID.
+   PUT /User/Update/{id}: Update a user by ID.
+   DELETE /User/Delete/{id}: Delete a user by ID.
    
 # Project Endpoints
 3. ```
-   POST /api/projects: Create a new project.
-   GET /api/projects: Retrieve a list of projects.
-   GET /api/projects/{id}: Retrieve a specific project by ID.
-   PUT /api/projects/{id}: Update a project by ID.
-   DELETE /api/projects/{id}: Delete a project by ID.
+   POST /Project/Create: Create a new project.
+   GET /Project/Get: Retrieve a list of projects.
+   GET /Project/Get/{id}: Retrieve a specific project by ID.
+   PUT /Project/Update/{id}: Update a project by ID.
+   DELETE /Project/Delete/{id}: Delete a project by ID.
 
 # Notification Endpoints
 4. ```
-    GET /api/notifications: Retrieve a list of notifications.
-    GET /api/notifications/{id}: Retrieve a specific notification by ID.
-   DELETE /api/notifications/{id}: Delete a notification by ID.
+    GET /Notification/Get: Retrieve a list of notifications.
+    GET /Notification/Get/{id}: Retrieve a specific notification by ID.
+   DELETE /Notification/Delete/{id}: Delete a notification by ID.
 
-For additional endpoints and detailed API documentation, you can access the Swagger UI by visiting /swagger in your web browser after running the API.
+In the Notification Endpoint, I omitted a create method because notifications are automatically generated when a user is assigned or unassigned from a task.
+
+You can access the Swagger UI by visiting /swagger in your web browser after running the API for additional endpoints and detailed API documentation.
 
