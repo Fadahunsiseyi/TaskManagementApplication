@@ -32,10 +32,6 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         foreach (var include in includes) query = query.Include(include);
 
         return await query.SingleOrDefaultAsync();
-
-        //var result = await query.FirstOrDefaultAsync();
-        //return result;
-        //return await query.FirstOrDefaultAsync();
     }
     public async Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>>[] filters, params Expression<Func<T, object>>[] includes)
     {
