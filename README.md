@@ -21,7 +21,7 @@ To set up and run the API on your local machine, follow these steps:
    ```bash
    git clone https://github.com/Fadahunsiseyi/TaskManagementApplication.git
 2. Open the solution in Visual Studio.
-3. Configure the database connection string in appsettings.json under the API project. This project uses SQLite, and the SQLite database is created automatically when the application starts. The database file is located in the TaskManagement.API folder.
+3. Configure the database connection string in Properties/launchSettings.json under the API project. This project uses SQLite, and the SQLite database is created automatically when the application starts. The database file is located in the TaskManagement.API folder.
 4. Build the solution.
 5. Run the API project.
 
