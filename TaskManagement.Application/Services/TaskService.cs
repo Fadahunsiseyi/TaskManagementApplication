@@ -18,11 +18,12 @@ public class TaskService : ITaskService
     private IGenericRepository<Domain.Entities.Task> TaskRepository { get; }
     private IGenericRepository<User> UserRepository { get; }
     private IGenericRepository<Project> ProjectRepository { get; }
+    private IGenericRepository<Notification> NotificationRepository { get; }
     private TaskCreateValidator TaskCreateValidator { get; }
     private TaskUpdateValidator TaskUpdateValidator { get; }
 
     public TaskService(IMapper mapper, IGenericRepository<Domain.Entities.Task> taskRepository, IGenericRepository<User> userRepository,
-        IGenericRepository<Project> projectRepository, TaskCreateValidator taskCreateValidator, TaskUpdateValidator taskUpdateValidator )
+        IGenericRepository<Project> projectRepository, TaskCreateValidator taskCreateValidator, TaskUpdateValidator taskUpdateValidator, IGenericRepository<Notification> notificationRepository  )
     {
         Mapper = mapper;
         TaskRepository = taskRepository;
@@ -30,6 +31,7 @@ public class TaskService : ITaskService
         ProjectRepository = projectRepository;
         TaskCreateValidator = taskCreateValidator;
         TaskUpdateValidator = taskUpdateValidator;
+        NotificationRepository = notificationRepository;
     }
     public async Task<Guid> CreateTaskAsync(TaskCreate taskCreate)
     {
@@ -124,4 +126,46 @@ priority.Priority.StartsWith(lowercasePriority);
         TaskRepository.Delete(entity);
         await TaskRepository.SaveChangesAsync();
     }
+    public async System.Threading.Tasks.Task TaskAssignmentAsync(TaskAssignment taskAssignment)
+    {
+        try
+        {
+            if(!await TaskRepository.ExistsAsync(taskAssignment.TaskId) || !await ProjectRepository.ExistsAsync(taskAssignment.ProjectId) )
+            {
+                  throw new Exception("Task or Project not found");
+            }
+            else
+            {
+                var task = await TaskRepository.GetByIdAsync(taskAssignment.TaskId);
+
+                task.ProjectId = taskAssignment.ProjectId;
+                await TaskRepository.SaveChangesAsync();
+                var notification = new Notification { 
+                    UserId = task.UserId.Value,
+                    Message = "You have been assigned a task",
+                    Type = NotificationsType.StatusUpdate,
+                    IsRead = false
+                };
+                await NotificationRepository.InsertAsync(notification);
+                await NotificationRepository.SaveChangesAsync();
+            }
+           
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("An error occurred while assigning the task: " + ex.Message);
+        }
+    }
+    public async System.Threading.Tasks.Task TaskUnAssignmentAsync(Guid id)
+    {
+
+            if(!await TaskRepository.ExistsAsync(id))
+            {
+                  throw new Exception("Task not found");
+            }
+            var task = await TaskRepository.GetByIdAsync(id);
+        task.ProjectId = null;
+            await TaskRepository.SaveChangesAsync();
+    }
+
 }
