@@ -44,23 +44,33 @@ To set up and run the API on your local machine, follow these steps:
 # User Endpoints
 2. ```
    POST /User/Create: Create a new user.
+   
    GET /User/Get: Retrieve a list of users.
+   
    GET /User/Get/{id}: Retrieve a specific user by ID.
+   
    PUT /User/Update/{id}: Update a user by ID.
+   
    DELETE /User/Delete/{id}: Delete a user by ID.
    
 # Project Endpoints
 3. ```
    POST /Project/Create: Create a new project.
+   
    GET /Project/Get: Retrieve a list of projects.
+   
    GET /Project/Get/{id}: Retrieve a specific project by ID.
+   
    PUT /Project/Update/{id}: Update a project by ID.
+   
    DELETE /Project/Delete/{id}: Delete a project by ID.
 
 # Notification Endpoints
 4. ```
     GET /Notification/Get: Retrieve a list of notifications.
+   
     GET /Notification/Get/{id}: Retrieve a specific notification by ID.
+   
    DELETE /Notification/Delete/{id}: Delete a notification by ID.
 
 In the Notification Endpoint, I omitted a create method because notifications are automatically generated when a user is assigned or unassigned from a task.
