@@ -64,5 +64,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
             DbSet.Attach(entity);
         DbSet.Remove(entity);
     }
+    public async Task<bool> ExistsAsync(Guid id)
+    {
+        return await DbSet.AnyAsync(x => x.Id == id);
+    }
 
 }
