@@ -41,23 +41,24 @@ public class UserService : IUserService
     }
     public async Task<UserGet> GetUserAsync(Guid id)
     {
+        if(!await UserRepository.ExistsAsync(id)) throw new Exception("User not found");
         var entity = await UserRepository.GetByIdAsync(id);
         return Mapper.Map<UserGet>(entity);
     }
     public async System.Threading.Tasks.Task UpdateUserAsync(Guid id, UserUpdate userUpdate)
     {
+        if (!await UserRepository.ExistsAsync(id)) throw new Exception("User not found");
         await UserUpdateValidator.ValidateAndThrowAsync(userUpdate);
 
         var existingEntity = await UserRepository.GetByIdAsync(id);
-        if (existingEntity is null) throw new Exception("User not found");
         var entity = Mapper.Map(userUpdate, existingEntity);
         UserRepository.Update(entity);
         await UserRepository.SaveChangesAsync();
     }
     public async System.Threading.Tasks.Task DeleteUserAsync(Guid id)
     {
+        if (!await UserRepository.ExistsAsync(id)) throw new Exception("User not found");
         var entity = await UserRepository.GetByIdAsync(id);
-        if (entity is null) throw new Exception("User not found");
         UserRepository.Delete(entity);
         await UserRepository.SaveChangesAsync();
     }
