@@ -96,4 +96,32 @@ public class TaskController : ControllerBase
             return StatusCode(500, new { Status = "Error", Message = "An error occurred while deleting the tasjs: " + ex.Message });
         }
     }
+    [HttpPut]
+    [Route("Assignment")]
+    public async Task<IActionResult> TaskAssignment(TaskAssignment taskAssignment)
+    {
+        try
+        {
+            await TaskService.TaskAssignmentAsync(taskAssignment);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while assigning the task: " + ex.Message });
+        }
+    }
+    [HttpPut]
+    [Route("UnAssignment/{id}")]
+    public async Task<IActionResult> TaskUnAssignment([FromRoute]Guid id)
+    {
+        try
+        {
+            await TaskService.TaskUnAssignmentAsync(id);
+            return Ok();
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { Status = "Error", Message = "An error occurred while unassigning the task: " + ex.Message });
+        }
+    }
 }

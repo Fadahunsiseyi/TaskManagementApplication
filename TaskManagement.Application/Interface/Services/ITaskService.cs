@@ -9,4 +9,6 @@ public interface ITaskService
     Task<IEnumerable<TaskList>> GetTasksAsync(TaskFilter taskFilter);
     Task UpdateTaskAsync(Guid id, TaskUpdate taskUpdate);
     Task DeleteTaskAsync(Guid id);
+    Task TaskAssignmentAsync(TaskAssignment taskAssignment);
+    Task TaskUnAssignmentAsync(Guid taskId);
 }

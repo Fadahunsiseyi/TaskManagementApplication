@@ -13,20 +13,20 @@ public class NotificationController : ControllerBase
     {
         NotificationService = notificationService;
     }
-    [HttpPost]
-    [Route("Create")]
-    public async Task<IActionResult> CreateNotification(NotificationCreate notificationCreate)
-    {
-        try {
-            var id = await NotificationService.CreateNotificationAsync(notificationCreate);
-            return Ok(new { Status = "Success", Message = "Notification created successfully", Id = id });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest(new { Status = "Error", Message = "Error creating notification: " + ex.Message });
-        }
+    //[HttpPost]
+    //[Route("Create")]
+    //public async Task<IActionResult> CreateNotification(NotificationCreate notificationCreate)
+    //{
+    //    try {
+    //        var id = await NotificationService.CreateNotificationAsync(notificationCreate);
+    //        return Ok(new { Status = "Success", Message = "Notification created successfully", Id = id });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return BadRequest(new { Status = "Error", Message = "Error creating notification: " + ex.Message });
+    //    }
 
-    }
+    //}
     [HttpGet]
     [Route("Get")]
     public async Task<IActionResult> GetNotifications()
@@ -64,21 +64,21 @@ public class NotificationController : ControllerBase
             return StatusCode(500, new { Status = "Error", Message = "An error occurred while retrieving the notification: " + ex.Message });
         }
     }
-    [HttpPut]
-    [Route("Update/{id}")]
-    public async Task<IActionResult> UpdateNotification([FromRoute]Guid id, NotificationUpdate notificationUpdate)
-    {
-        try
-        {
-            await NotificationService.UpdateNotificationAsync(id, notificationUpdate);
+    //[HttpPut]
+    //[Route("Update/{id}")]
+    //public async Task<IActionResult> UpdateNotification([FromRoute]Guid id, NotificationUpdate notificationUpdate)
+    //{
+    //    try
+    //    {
+    //        await NotificationService.UpdateNotificationAsync(id, notificationUpdate);
 
-            return Ok(new { Status = "Success", Message = "Notification updated successfully" });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, new { Status = "Error", Message = "An error occurred while updating the notification: " + ex.Message });
-        }
-    }
+    //        return Ok(new { Status = "Success", Message = "Notification updated successfully" });
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return StatusCode(500, new { Status = "Error", Message = "An error occurred while updating the notification: " + ex.Message });
+    //    }
+    //}
     [HttpDelete]
     [Route("Delete/{id}")]
     public async Task<IActionResult> DeleteNotification([FromRoute]Guid id)
