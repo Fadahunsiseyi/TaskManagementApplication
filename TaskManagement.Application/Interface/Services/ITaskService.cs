@@ -11,4 +11,5 @@ public interface ITaskService
     Task DeleteTaskAsync(Guid id);
     Task TaskAssignmentAsync(TaskAssignment taskAssignment);
     Task TaskUnAssignmentAsync(Guid taskId);
+    Task<IEnumerable<TaskList>> GetTaskDueDateAsync();
 }

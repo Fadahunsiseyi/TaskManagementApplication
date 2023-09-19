@@ -23,7 +23,7 @@ public class TaskService : ITaskService
     private TaskUpdateValidator TaskUpdateValidator { get; }
 
     public TaskService(IMapper mapper, IGenericRepository<Domain.Entities.Task> taskRepository, IGenericRepository<User> userRepository,
-        IGenericRepository<Project> projectRepository, TaskCreateValidator taskCreateValidator, TaskUpdateValidator taskUpdateValidator, IGenericRepository<Notification> notificationRepository  )
+        IGenericRepository<Project> projectRepository, TaskCreateValidator taskCreateValidator, TaskUpdateValidator taskUpdateValidator, IGenericRepository<Notification> notificationRepository)
     {
         Mapper = mapper;
         TaskRepository = taskRepository;
@@ -37,18 +37,11 @@ public class TaskService : ITaskService
     {
         await TaskCreateValidator.ValidateAndThrowAsync(taskCreate);
 
-        var user = await UserRepository.GetByIdAsync(taskCreate.UserId);
-
-        if (user is null) throw new Exception("user not found");
-
-        var project = await ProjectRepository.GetByIdAsync(taskCreate.ProjectId);
-
-        if (project is null) throw new Exception("project not found");
-
-        var entity = Mapper.Map<Domain.Entities.Task>(taskCreate);
+        if (!await UserRepository.ExistsAsync(taskCreate.UserId) || !await ProjectRepository.ExistsAsync(taskCreate.ProjectId)) throw new Exception("user or project not found");
+       
 
         string taskStatus;
-        switch (taskCreate.Status.ToUpper().Replace(" ","")) // Use ToLower to handle case-insensitivity
+        switch (taskCreate.Status.ToUpper().Replace(" ", ""))
         {
             case "PENDING":
                 taskStatus = "PENDING";
@@ -63,7 +56,7 @@ public class TaskService : ITaskService
                 throw new Exception("Invalid task status");
         }
         string taskPriority;
-        switch (taskCreate.Priority.ToUpper().Replace(" ", "")) // Use ToLower to handle case-insensitivity
+        switch (taskCreate.Priority.ToUpper().Replace(" ", ""))
         {
             case "LOW":
                 taskPriority = "LOW";
@@ -78,12 +71,12 @@ public class TaskService : ITaskService
                 throw new Exception("Invalid task priority");
         }
 
+        var entity = Mapper.Map<Domain.Entities.Task>(taskCreate);
 
-        entity.User = user;
-        entity.Project = project;
-        entity.Status = taskStatus;//to be deleted
-        entity.Priority = taskPriority;// to be deleted
+        entity.Status = taskStatus;
+        entity.Priority = taskPriority;
         entity.DueDate = DateTime.UtcNow.AddDays(7);
+
         await TaskRepository.InsertAsync(entity);
         await TaskRepository.SaveChangesAsync();
         return entity.Id;
@@ -91,13 +84,13 @@ public class TaskService : ITaskService
 
     public async Task<TaskDetails> GetTaskDetailsAsync(Guid id)
     {
-        var entity = await TaskRepository.GetByIdAsync(id, (task) => task.User, (task) => task.Project  );
+        var entity = await TaskRepository.GetByIdAsync(id, (task) => task.User, (task) => task.Project);
         return Mapper.Map<TaskDetails>(entity);
     }
     public async Task<IEnumerable<TaskList>> GetTasksAsync(TaskFilter taskFilter)
     {
         string? lowercasePriority = taskFilter.Priority?.ToUpper().Replace(" ", "");
-        string? lowercaseStatus = taskFilter.Status?.ToUpper().Replace(" ","");
+        string? lowercaseStatus = taskFilter.Status?.ToUpper().Replace(" ", "");
 
         Expression<Func<Domain.Entities.Task, bool>> statusFilter = (task) => lowercaseStatus == null ? true :
 task.Status.StartsWith(lowercaseStatus);
@@ -106,23 +99,24 @@ priority.Priority.StartsWith(lowercasePriority);
 
         var entities = await TaskRepository.GetFilteredAsync(new Expression<Func<Domain.Entities.Task, bool>>[] { statusFilter, priorityFilter }, (task) => task.User, (task) => task.Project);
 
-        //var entity = await TaskRepository.GetAllAsync(null,null);
+        
         return Mapper.Map<IEnumerable<TaskList>>(entities);
     }
     public async System.Threading.Tasks.Task UpdateTaskAsync(Guid id, TaskUpdate taskUpdate)
     {
         await TaskUpdateValidator.ValidateAndThrowAsync(taskUpdate);
 
+        if (!await TaskRepository.ExistsAsync(id)) throw new Exception("Task not found");
+
         var existingEntity = await TaskRepository.GetByIdAsync(id);
-        if (existingEntity is null) throw new Exception("Task not found");
         var entity = Mapper.Map(taskUpdate, existingEntity);
         TaskRepository.Update(entity);
         await TaskRepository.SaveChangesAsync();
     }
     public async System.Threading.Tasks.Task DeleteTaskAsync(Guid id)
     {
+        if (!await TaskRepository.ExistsAsync(id)) throw new Exception("Task not found");
         var entity = await TaskRepository.GetByIdAsync(id);
-        if (entity is null) throw new Exception("Task not found");
         TaskRepository.Delete(entity);
         await TaskRepository.SaveChangesAsync();
     }
@@ -130,9 +124,9 @@ priority.Priority.StartsWith(lowercasePriority);
     {
         try
         {
-            if(!await TaskRepository.ExistsAsync(taskAssignment.TaskId) || !await ProjectRepository.ExistsAsync(taskAssignment.ProjectId) )
+            if (!await TaskRepository.ExistsAsync(taskAssignment.TaskId) || !await ProjectRepository.ExistsAsync(taskAssignment.ProjectId))
             {
-                  throw new Exception("Task or Project not found");
+             throw new Exception("Task or Project not found");
             }
             else
             {
@@ -140,7 +134,8 @@ priority.Priority.StartsWith(lowercasePriority);
 
                 task.ProjectId = taskAssignment.ProjectId;
                 await TaskRepository.SaveChangesAsync();
-                var notification = new Notification { 
+                var notification = new Notification
+                {
                     UserId = task.UserId.Value,
                     Message = "You have been assigned a task",
                     Type = NotificationsType.StatusUpdate,
@@ -149,7 +144,7 @@ priority.Priority.StartsWith(lowercasePriority);
                 await NotificationRepository.InsertAsync(notification);
                 await NotificationRepository.SaveChangesAsync();
             }
-           
+
         }
         catch (Exception ex)
         {
@@ -159,13 +154,27 @@ priority.Priority.StartsWith(lowercasePriority);
     public async System.Threading.Tasks.Task TaskUnAssignmentAsync(Guid id)
     {
 
-            if(!await TaskRepository.ExistsAsync(id))
-            {
-                  throw new Exception("Task not found");
-            }
-            var task = await TaskRepository.GetByIdAsync(id);
+        if (!await TaskRepository.ExistsAsync(id))
+        {
+            throw new Exception("Task not found");
+        }
+        var task = await TaskRepository.GetByIdAsync(id);
         task.ProjectId = null;
-            await TaskRepository.SaveChangesAsync();
+        await TaskRepository.SaveChangesAsync();
+        var notification = new Notification
+        {
+            UserId = task.UserId.Value,
+            Message = "You have been unassigned from a task",
+            Type = NotificationsType.StatusUpdate,
+            IsRead = false
+        };
+        await NotificationRepository.InsertAsync(notification);
+        await NotificationRepository.SaveChangesAsync();
+    }
+    public async Task<IEnumerable<TaskList>> GetTaskDueDateAsync()
+    {
+        var entities = await TaskRepository.GetFilteredAsync(new Expression<Func<Domain.Entities.Task, bool>>[] { (task) => task.DueDate <= DateTime.UtcNow.AddDays(7) }, (task) => task.User, (task) => task.Project);
+        return Mapper.Map<IEnumerable<TaskList>>(entities);
     }
 
 }

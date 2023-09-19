@@ -44,18 +44,18 @@ public class ProjectService : IProjectService
     }
     public async System.Threading.Tasks.Task UpdateProjectAsync(Guid id, ProjectUpdate projectUpdate)
     {
+        if (!await ProjectRepository.ExistsAsync(id)) throw new Exception("Project not found");
         await ProjectUpdateValidator.ValidateAndThrowAsync(projectUpdate);
 
         var existingEntity = await ProjectRepository.GetByIdAsync(id);
-        if (existingEntity is null) throw new Exception("Project not found");
         var entity = Mapper.Map(projectUpdate, existingEntity);
         ProjectRepository.Update(entity);
         await ProjectRepository.SaveChangesAsync();
     }
     public async System.Threading.Tasks.Task DeleteProjectAsync(Guid id)
     {
+        if (!await ProjectRepository.ExistsAsync(id)) throw new Exception("Project not found");
         var entity = await ProjectRepository.GetByIdAsync(id);
-        if (entity is null) throw new Exception("Project not found");
         ProjectRepository.Delete(entity);
         await ProjectRepository.SaveChangesAsync();
     }
