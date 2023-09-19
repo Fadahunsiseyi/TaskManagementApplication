@@ -11,5 +11,6 @@ public interface IGenericRepository<T> where T : BaseEntity
     Task<IEnumerable<T>> GetFilteredAsync(Expression<Func<T, bool>>[] filters, params Expression<Func<T, object>>[] includes);
     void Update(T entity);
     void Delete(T entity);
+    Task<bool> ExistsAsync(Guid id);
     System.Threading.Tasks.Task SaveChangesAsync();
 }
